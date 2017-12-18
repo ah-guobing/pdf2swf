@@ -36,6 +36,7 @@ JDK：jdk1.8
     <td>待转换PDF文件的绝对路径</td>
   </tr>
 </table>
+前端通过JS+Flash实现swf的加载，具体请参考 player/ 
 
 ## 相关截图
 ![image](https://github.com/ah-guobing/pdf2swf/blob/master/resources/install.png)
