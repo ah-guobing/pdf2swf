@@ -12,8 +12,25 @@ JDK：jdk1.8
 &#35; chmod +x ./*.sh<br />
 &#35; ./install.sh
 
-### 微服务
-考虑到转换工作是由服务端处理的，考虑到多数语言(如PHP)一般是禁用执行服务器Shell的，所以此处用Java来实现微服务
-&#35; nohup java -jar serv.jar --server.port=端口号 >>./serv.log & <br />
+### 微服务安装
+考虑到转换工作是由服务端处理的，考虑到多数语言(如PHP)一般是禁用执行系统命令的，所以此处用Java来实现微服务<br />
+&#35; nohup java -jar serv.jar --server.port=52012 >>./serv.log & <br />
 &#35;&#35; 检测微服务是否正常<br />
 &#35; netstat -anp | grep 上一步指定的端口号
+
+### 客户端调用
+任何客户端通过HTTP POST请求来调用服务<br />
+&#42; Url：http://localhost:52012 <br />
+<table>
+  <tr>
+    <th colspan="2">参数列表</th>
+  </tr>
+  <tr>
+    <th>参数</th>
+    <th>说明</th>
+  </tr>
+  <tr>
+    <td>pdfFile</td>
+    <td>待转换PDF文件的绝对路径</td>
+  </tr>
+</table>
