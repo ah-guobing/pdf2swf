@@ -1,7 +1,7 @@
 # pdf2swf
 PDF文件在线预览
 
-## 安装运行
+## 服务端
 ### 环境要求
 OS：CentOS<br />
 JDK：jdk1.8
