@@ -38,7 +38,8 @@ JDK：jdk1.8
 </table>
 
 ## 相关截图
-
+![image](https://github.com/ah-guobing/pdf2swf/blob/master/resources/install.png)
+![image](https://github.com/ah-guobing/pdf2swf/blob/master/resources/post.png)
 
 ## 问题反馈
 使用中若有问题请联系QQ：46926125
