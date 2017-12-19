@@ -10,6 +10,7 @@
 #
 #================================================================
 
+
 #PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 #export PATH
 
@@ -86,7 +87,7 @@ install_swftools(){
 	if [ "$PM" = "centos" ];then
 		yum -y install gcc* automake zlib-devel libjpeg-devel giflib-devel freetype-devel
 	else
-		apt-get -y install gcc* automake zlib-devel libjpeg-devel giflib-devel freetype-devel
+		apt-get -y install gcc* automake zlib-devel libjpeg-devel giflib-devel freetype-devel wget
 	fi
 	cd $resources_dir
 	tar -zxvf swftools-2013-04-09-1007.tar.gz && cd swftools-2013-04-09-1007
@@ -136,9 +137,11 @@ install_jdk(){
 		echo -e "export JRE_HOME=\${JAVA_HOME}/jre" >>/etc/profile
 		echo -e "export CLASSPATH=.:\${JAVA_HOME}/lib:\${JRE_HOME}/lib" >>/etc/profile
 		echo -e "export PATH=\${JAVA_HOME}/bin:\$PATH\n\n" >>/etc/profile
-        	source /etc/profile
+        source /etc/profile
 		echo '   > 安装成功 ...'
 	fi
+	java_version=`java -version 2>&1 |awk 'NR==1{ gsub(/"/,""); print $3 }'`
+    java_version_main=${java_version:0:3}
 	if [ `expr 1.7 \> $java_version_main` -eq 0 ];then
 		echo '   > 当前JDK版本：'$java_version
 	else
