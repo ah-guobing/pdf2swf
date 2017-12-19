@@ -123,7 +123,7 @@ install_xpdf(){
 install_jdk(){
 	java_version=`java -version 2>&1 |awk 'NR==1{ gsub(/"/,""); print $3 }'`
 	java_version_main=${java_version:0:3}
-	if [ "$java_version_main" = "123" ];then
+	if [ `expr 100 \> $java_version_main` -eq 0 ];then
 		echo -e ${color_b}"准备安装JDK ..."${color_e}
 		cd $resources_dir
 		if [ ! -f "jdk-8u151-linux-x64.tar.gz" ];then
