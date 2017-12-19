@@ -3,7 +3,7 @@ PDF文件在线预览
 
 ## 服务端
 ### 环境要求
-OS：CentOS<br />
+OS：CentOS / Ubuntu<br />
 JDK：jdk1.8
 
 ### 转换工具安装
