@@ -13,23 +13,38 @@
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
 
-dir=$(pwd)
+dir=$(pwd)"/"
 resources_dir=${dir}"resources/"
-swftools_res_path=${resources_dir}"pdf2swf/resources/swftools-2013-04-09-1007.tar.gz"
+swftools_code_path=${resources_dir}"swftools-2013-04-09-1007.tar.gz"
 swftools_install_dir="/usr/local/swftools/"
-xpdf_res_path=${resources_dir}"pdf2swf/resources/xpdf-chinese-simplified.tar.gz"
+xpdf_code_path=${resources_dir}"xpdf-chinese-simplified.tar.gz"
 xpdf_install_dir="/usr/local/xpdf/"
 color_b="\033[44;36m"
+color_err="\033[41;37m"
 color_e="\033[0m"
 
 [ -f /etc/init.d/functions ] && . /etc/init.d/functions || exit 1
 
+check(){
+	if [ ! -d $resources_dir ];then
+		echo -e ${color_err}"Error：资源目录不存在！"${color_e}
+		exit 1
+	fi
+	if [ ! -f $swftools_code_path ];then
+		echo -e ${color_err}"Error：源码包不存在！"${color_e}
+                exit 1
+	fi
+	if [ ! -f $xpdf_code_path ];then
+                echo -e ${color_err}"Error：源码包不存在！"${color_e}
+                exit 1
+        fi
+}
 
 install_swftools(){
 	echo -e ${color_b}"准备安装swftools ..."${color_e}
 	echo '   > 正在安装所需依懒...'
 	yum -y install gcc* automake zlib-devel libjpeg-devel giflib-devel freetype-devel
-	[ -e $resources_dir ] && cd $resources_dir
+	cd $resources_dir
 	tar -zxvf swftools-2013-04-09-1007.tar.gz && cd swftools-2013-04-09-1007
 	./configure --prefix=${swftools_install_dir}
 	make && make install
@@ -42,7 +57,7 @@ install_swftools(){
 
 install_xpdf(){
 	echo -e ${color_b}"准备安装xpdf ..."${color_e}
-	cd ../
+	cd $resources_dir
 	tar zxvf xpdf-chinese-simplified.tar.gz
 	cd ./xpdf-chinese-simplified/
 	rm -rf ./add-to-xpdfrc
@@ -54,14 +69,16 @@ install_xpdf(){
 	echo -e "toUnicodeDir       ${xpdf_install_dir}CMap\n" >>add-to-xpdfrc
 	echo -e "displayCIDFontTT Adobe-GB1       ${xpdf_install_dir}CMap/gkai00mp.ttf\n" >>add-to-xpdfrc	
 	cp -R ../xpdf-chinese-simplified/ ${xpdf_install_dir}
-	cd ../../
+	cd $resources_dir
 	echo -e ${color_b}"功能演示 ..."${color_e}
 	pdf2swf -s languagedir=${xpdf_install_dir} -T 9 -s poly2bitmap -s zoom=150 -s flashversion=9 ${resources_dir}"demo.pdf" -o ${dir}"demo.swf"
 	
 }
 
 main(){
+	check
 	install_swftools
 	install_xpdf
 }
 main
+
