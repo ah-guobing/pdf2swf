@@ -13,7 +13,7 @@
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
 
-dir=./
+dir=$(pwd)
 resources_dir=${dir}"resources/"
 swftools_res_path=${resources_dir}"pdf2swf/resources/swftools-2013-04-09-1007.tar.gz"
 swftools_install_dir="/usr/local/swftools/"
