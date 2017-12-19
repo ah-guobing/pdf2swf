@@ -7,7 +7,7 @@ OS：CentOS / Ubuntu<br />
 JDK：jdk1.8
 
 ### 转换工具安装
-安装脚本是针对CentOS编写的，若非CentOS系统，请自行安装resources/ 下的2款软件<br />
+安装脚本在CentOS及Ubuntu上测试通过，如果安装过程遇到问题请反馈！<br />
 &#35; cd pdf2swf<br />
 &#35; chmod +x ./*.sh<br />
 &#35; ./install.sh
